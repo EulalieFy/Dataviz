@@ -6,7 +6,7 @@ from bokeh.layouts import widgetbox, column, row
 from bokeh.plotting import figure, curdoc
 from bokeh.palettes import Category20
 from bokeh.core.properties import value
-from bokeh.models import RangeSlider, RadioButtonGroup, MultiSelect, RadioGroup, ColumnDataSource, Slider, Select, Button
+from bokeh.models import RangeSlider, RadioButtonGroup, MultiSelect, RadioGroup, ColumnDataSource, Slider, Select, Button, Range1d
 from bokeh.models.widgets import Panel, Tabs, PreText
 
 #### directory ####
@@ -87,8 +87,37 @@ for name in name_birds:
 
 
 # prediction
-list_prediction = list(np.linspace(0, 1, 15))
-
+array_pred = np.array([[0.05, 0.04, 0.08, 0.05, 0.03, 0.05, 0.04, 0.04, 0.03, 0.09, 0.12,
+        0.05, 0.03, 0.03, 0.04, 0.07, 0.08, 0.07, 0.03],
+       [0.02, 0.03, 0.05, 0.03, 0.06, 0.05, 0.06, 0.03, 0.03, 0.11, 0.07,
+        0.05, 0.03, 0.05, 0.03, 0.1 , 0.13, 0.04, 0.04],
+       [0.03, 0.02, 0.07, 0.05, 0.03, 0.06, 0.13, 0.05, 0.03, 0.07, 0.08,
+        0.04, 0.02, 0.02, 0.03, 0.08, 0.12, 0.03, 0.04],
+       [0.02, 0.02, 0.06, 0.03, 0.07, 0.06, 0.03, 0.03, 0.03, 0.08, 0.16,
+        0.05, 0.02, 0.02, 0.02, 0.07, 0.17, 0.04, 0.03],
+       [0.02, 0.02, 0.04, 0.03, 0.02, 0.05, 0.24, 0.08, 0.01, 0.05, 0.09,
+        0.04, 0.01, 0.01, 0.04, 0.1 , 0.09, 0.02, 0.03],
+       [0.03, 0.03, 0.04, 0.03, 0.02, 0.06, 0.23, 0.08, 0.02, 0.05, 0.07,
+        0.04, 0.02, 0.01, 0.04, 0.12, 0.08, 0.02, 0.03],
+       [0.05, 0.03, 0.09, 0.04, 0.04, 0.05, 0.04, 0.04, 0.05, 0.05, 0.11,
+        0.03, 0.04, 0.02, 0.03, 0.09, 0.1 , 0.05, 0.04],
+       [0.02, 0.01, 0.06, 0.03, 0.03, 0.04, 0.24, 0.05, 0.02, 0.04, 0.05,
+        0.05, 0.01, 0.02, 0.03, 0.13, 0.12, 0.02, 0.03],
+       [0.03, 0.03, 0.04, 0.03, 0.03, 0.05, 0.24, 0.09, 0.02, 0.05, 0.07,
+        0.03, 0.01, 0.01, 0.04, 0.08, 0.09, 0.03, 0.02],
+       [0.04, 0.02, 0.06, 0.03, 0.04, 0.07, 0.12, 0.04, 0.03, 0.06, 0.06,
+        0.07, 0.02, 0.03, 0.05, 0.07, 0.11, 0.02, 0.04],
+       [0.04, 0.02, 0.06, 0.03, 0.03, 0.06, 0.05, 0.04, 0.04, 0.09, 0.08,
+        0.04, 0.02, 0.03, 0.03, 0.08, 0.18, 0.03, 0.04],
+       [0.08, 0.04, 0.1 , 0.04, 0.04, 0.04, 0.03, 0.04, 0.06, 0.06, 0.1 ,
+        0.04, 0.05, 0.02, 0.02, 0.08, 0.06, 0.05, 0.04],
+       [0.03, 0.05, 0.06, 0.05, 0.05, 0.06, 0.02, 0.04, 0.06, 0.13, 0.08,
+        0.04, 0.02, 0.03, 0.04, 0.07, 0.08, 0.05, 0.04],
+       [0.03, 0.02, 0.05, 0.02, 0.05, 0.04, 0.05, 0.04, 0.05, 0.19, 0.06,
+        0.05, 0.03, 0.03, 0.03, 0.07, 0.11, 0.03, 0.03],
+       [0.03, 0.02, 0.04, 0.03, 0.03, 0.05, 0.22, 0.08, 0.02, 0.06, 0.07,
+        0.03, 0.01, 0.02, 0.04, 0.08, 0.13, 0.02, 0.03]])
+list_ordered_name = sorted(name_birds)
 
 def modify_doc(doc):
 
@@ -130,8 +159,6 @@ def modify_doc(doc):
     fig_1 = figure(title="Birds recording in Lekagul Roadways",
                  x_range=(0, 200), y_range=(0, 200),
                  tools=TOOLS, width=600, height=500
-                 # Specifying xdim/ydim isn't quire right
-                 # width=xdim, height=ydim,
                  )
     fig_1.xaxis.visible = False
     fig_1.yaxis.visible = False
@@ -146,17 +173,25 @@ def modify_doc(doc):
         labels=list(test_birds.ID.apply(str)), active=None, width=1300)
     rangeslider_2 = RangeSlider(title="Date Range", start=1983, end=2018, value=(1983, 2018), step=1,
                               callback_policy='mouseup')
-    button_pred = Button(label=str(list_prediction[0]), button_type='warning')
+    button_pred = Button(label='Predicted bird', button_type='danger')
     def update_1(attr, old, new):
         test_bird_num = radio_button_group_test.active
         if test_bird_num is not None:
-            button_pred.label=str(list_prediction[test_bird_num])
+            #button_pred.label=str(list_prediction[test_bird_num])
             dataset = test_birds[test_birds['ID']==test_bird_num+1]
             new_data = ColumnDataSource(dataset)
             source_2.data = new_data.data
+            button_pred.label = list_ordered_name[np.argmax(array_pred[test_bird_num, :])]
+            list_map = list(map(lambda x, y: x + ' ------ ' + str(y), list_ordered_name, array_pred[test_bird_num, :]))
+            list_change = []
+            for name_bird in name_birds:
+                list_change.append(list_map[list_ordered_name.index(name_bird)])
+            radio_button_group_train._property_values['labels'][:] = list_change
             plot_amplitude_test = create_signal_plot(list_df_test_signals[test_bird_num], 'test %s'%(test_bird_num +1))
+            plot_amplitude_test.x_range = Range1d(0, 60)
             plot_spectrum_test = create_signal_plot(list_df_test_spectrum[test_bird_num], 'test %s'%(test_bird_num +1), "Fréquence", "Magnitude",
                                                     "Freq", "Magnitude")
+            plot_spectrum_test.x_range = Range1d(0,0.02)
             signals_plot.children[0] = plot_amplitude_test
             signals_plot.children[2] = plot_spectrum_test
     radio_button_group_test.on_change('active', update_1)
@@ -172,24 +207,31 @@ def modify_doc(doc):
                             (birds['English_name'] == name_birds[idx_name_bird])]
             new_data = ColumnDataSource(dataset)
             source_1.data = new_data.data
-            plot_amplitude_test = create_signal_plot(dict_df_signals[name_birds[idx_name_bird]], name_birds[idx_name_bird])
-            plot_spectrum_test = create_signal_plot(dict_df_spectrum[name_birds[idx_name_bird]], name_birds[idx_name_bird], "Fréquence", "Magnitude",
-                                                    "Freq", "Magnitude")
-            signals_plot.children[1] = plot_amplitude_test
-            signals_plot.children[3] = plot_spectrum_test
+            if new in range(15):
+                plot_amplitude_test = create_signal_plot(dict_df_signals[name_birds[idx_name_bird]], name_birds[idx_name_bird])
+                plot_amplitude_test.x_range = Range1d(0, 60)
+                plot_spectrum_test = create_signal_plot(dict_df_spectrum[name_birds[idx_name_bird]], name_birds[idx_name_bird], "Fréquence", "Magnitude",
+                                                        "Freq", "Magnitude")
+                plot_spectrum_test.x_range = Range1d(0, 0.02)
+                signals_plot.children[1] = plot_amplitude_test
+                signals_plot.children[3] = plot_spectrum_test
         else:
             pass
 
     radio_button_group_train.on_change('active', update_2)
     rangeslider_2.on_change('value', update_2)
     plot_amplitude_train = create_signal_plot(dict_df_signals[name_birds[0]], name_birds[0])
+    plot_amplitude_train.x_range = Range1d(0, 60)
     plot_amplitude_test = create_signal_plot(list_df_test_signals[0], 'test 1')
+    plot_amplitude_test.x_range = Range1d(0, 60)
     plot_spectrum_train = create_signal_plot(dict_df_spectrum[name_birds[0]], name_birds[0], "Fréquence", "Magnitude", "Freq", "Magnitude")
+    plot_spectrum_train.x_range = Range1d(0, 0.02)
     plot_spectrum_test = create_signal_plot(list_df_test_spectrum[0], 'test 1', "Fréquence", "Magnitude",
                                                                     "Freq", "Magnitude")
+    plot_spectrum_test.x_range = Range1d(0, 0.02)
     signals_plot = column([plot_amplitude_test, plot_amplitude_train, plot_spectrum_test, plot_spectrum_train])
     row_map_signal = row([radio_button_group_train, column([fig_1, rangeslider_2]), signals_plot])
-    column_main = column([row([widgetbox([PreText(text="Probability Blue Pipit : "),radio_button_group_test]), button_pred]),
+    column_main = column([row([widgetbox([PreText(text="Prediction : "),radio_button_group_test]), button_pred]),
                           row_map_signal])
     tab1 = Panel(child=column_main,title="Main view")
     tab2 = Panel(child=column(inputs, fig), title="Birds location")
@@ -242,7 +284,6 @@ def modify_doc(doc):
     stacked_bar_count.legend.location = "bottom_left"
 
     def callback_call(attr, old, new):
-        # year= slider.value
         year = slider.value
         birds_name = select.value
         dataset_call = birds_call[(birds_call['year'] == year)&(birds_call['English_name'] == birds_name)]
