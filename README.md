@@ -16,7 +16,7 @@ Kasios pretends that they have recently recorded 15 blue-pipits, for each of thi
 
 - Fifth step in [this folder](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/tree/master/Dashboard): building a dashboard to enable the user to draw conclusion from localization, sound visualizations and predictions for each birds.
 
-To run the Dashboard on your laptop, download this folder and run this command on your terminal
+To run the Dashboard on your laptop, download [this folder](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/tree/master/Dashboard) and run this command on your terminal
 ```
 bokeh serve --show bokeh_final.py
 ```
