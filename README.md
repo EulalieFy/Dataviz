@@ -14,6 +14,9 @@ Kasios pretends that they have recently recorded 15 blue-pipits, for each of thi
 
 - Fourth step in [this notebook](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Classification%20and%20Conclusion.ipynb): use machine learning algorithm to predict which bird is behind each recordings.
 
-- Fifth step in [this file](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/tree/master/Dashboard): building a dashboard to enabling the user to draw conclusion from localization, sound visualizations and predictions for each birds.
+- Fifth step in [this folder](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/tree/master/Dashboard): building a dashboard to enabling the user to draw conclusion from localization, sound visualizations and predictions for each birds.
 
-
+To run the Dashboard on your laptop, download this folder and run this command on your terminal
+```
+bokeh serve --show bokeh_final.py
+```
