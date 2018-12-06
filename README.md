@@ -22,4 +22,4 @@ bokeh serve --show bokeh_final.py
 ```
 
 A snapshot of the final dashboard:
-![alt text]()
+![](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Snapshot_dashboard.png)
