@@ -20,3 +20,6 @@ To run the Dashboard on your laptop, download this folder and run this command o
 ```
 bokeh serve --show bokeh_final.py
 ```
+
+A snapshot of the final dashboard:
+![alt text]()
