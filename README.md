@@ -4,11 +4,16 @@ This project was made to answer to the data visualization contest : [Mini Vast C
 
 Kasios is accused of damaging the bird's living area of the Lekagul Nature Reserve. Our goal is to use Data Visualization, Signal Processing (for birds sounds analysis) and machine learning to determine if they are guilty of fleeing the birds from the reserves. The type of birds we are interested in is Rose-crested Blue Pipit.
 
-In the Notebook: you'll find the first map we did
+Kasios pretends that they have recently recorded 15 blue-pipits, for each of this recordings we are given the sound file and the localization (lat and lng). Our projects aims at finding if they are really blue pipits.
 
-In the Notebook: you'll find our first sound analysis, and how we chose the most representative sound for each type of birds
+- First step in this notebook: plot each bird localisation and test localization on a map to see whether it was logical.
 
-In the Notebook: you'll find our machine learning predictions and final conclusions
+- Second step in this notebook: visualize birds sounds ( waveform and spectogram ) to see if we can find resemblances. We will focus on blue pipits to find out which visual features caracterizes their sound (call / song).
 
-In this folder: the Dashboard we used to double-check predictions and draw conclusions.
+- Third step in [this notebook](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Features%20extraction.ipynb):  compute features from birds sounds, that will be used to make predictions
+
+- Fourth step in [this notebook](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Classification%20and%20Conclusion.ipynb): use machine learning algorithm to predict which bird is behind each recordings.
+
+- Fifth step in [this file](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/tree/master/Dashboard): building a dashboard to enabling the user to draw conclusion from localization, sound visualizations and predictions for each birds.
+
 
