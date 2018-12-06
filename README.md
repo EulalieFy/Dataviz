@@ -6,9 +6,9 @@ Kasios is accused of damaging the bird's living area of the Lekagul Nature Reser
 
 Kasios pretends that they have recently recorded 15 blue-pipits, for each of this recordings we are given the sound file and the localization (lat and lng). Our projects aims at finding if they are really blue pipits.
 
-- First step in this notebook: plot each bird localisation and test localization on a map to see whether it was logical.
+- First step in [this notebook](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Birds%20Location.ipynb): plot each bird localisation and test localization on a map to see whether it was logical.
 
-- Second step in this notebook: visualize birds sounds ( waveform and spectogram ) to see if we can find resemblances. We will focus on blue pipits to find out which visual features caracterizes their sound (call / song).
+- Second step in [this notebook](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Sound%20Visualizations.ipynb): visualize birds sounds ( waveform and spectogram ) to see if we can find resemblances. We will focus on blue pipits to find out which visual features caracterizes their sound (call / song).
 
 - Third step in [this notebook](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Features%20extraction.ipynb):  compute features from birds sounds, that will be used to make predictions
 
