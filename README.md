@@ -18,8 +18,10 @@ Kasios pretends that they have recently recorded 15 blue-pipits, for each of thi
 
 To run the Dashboard on your laptop, download [this folder](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/tree/master/Dashboard) and run this command on your terminal
 ```
-bokeh serve --show bokeh_final.py
+bokeh serve --show Dashboard/bokeh_final.py
 ```
 
 A snapshot of the final dashboard:
 ![](https://github.com/EulalieFy/Mini-Vast-Challenge-2018/blob/master/Snapshot_dashboard.png)
+
+Credits to Hamza Filali, Ambroise Coulomb and Eulalie Formery
